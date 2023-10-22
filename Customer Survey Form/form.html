@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+}
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+input, select {
+    width: 100%;
+    margin-bottom: 10px;
+}
+button {
+    width: 100px;
+}
+#submit {
+    background-color: blue;
+    color: white;
+}
+h1 {
+    color: blue;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<h1>Customer Survey Form</h1>
+<form id="surveyForm">
+<input id="firstName" type="text" placeholder="First Name" required />
+<input id="lastName" type="text" placeholder="Last Name" required />
+<input id="dob" type="date" placeholder="Date of Birth" required />
+<select id="country" required>
+<option value="">Select Country</option>
+<option value="India">India</option>
+<option value="USA">USA</option>
+<!-- Add more countries here -->
+</select>
+Gender:
+<input id="genderMale" type="radio" name="gender"/>Male
+<input id="genderFemale" type="radio" name="gender"/>Female
+<input id="profession" type="text" placeholder="Profession" required />
+<input id="email" type="email" placeholder="Email" required />
+<input id="mobileNumber" type="tel" placeholder="Mobile Number" required />
+<button id="submit" type="button" onclick="submitForm()">Submit</button>
+<button type="reset">Reset</button>
+</form>
+
+<script>
+function submitForm() {
+    let firstName = document.getElementById('firstName').value;
+    let lastName = document.getElementById('lastName').value;
+    let dob = document.getElementById('dob').value;
+    let country = document.getElementById('country').value;
+    let genderMale = document.getElementById('genderMale').checked;
+    let genderFemale = document.getElementById('genderFemale').checked;
+    let profession = document.getElementById('profession').value;
+    let email = document.getElementById('email').value;
+    let mobileNumber = document.getElementById('mobileNumber').value;
+
+    if (!firstName || !lastName || !dob || !country || !(genderMale || genderFemale) || !profession || !email || !mobileNumber) {
+        alert('Please fill all the fields.');
+        return;
+    }
+
+    let gender = '';
+    if (genderMale) gender += 'Male';
+    if (genderFemale) gender += 'Female';
+
+    alert(
+        'First Name: ' + firstName +
+        '\nLast Name: ' + lastName +
+        '\nDate of Birth: ' + dob +
+        '\nCountry: ' + country +
+        '\nGender: ' + gender +
+        '\nProfession: ' + profession +
+        '\nEmail: ' + email +
+        '\nMobile Number: ' + mobileNumber
+    );
+
+    document.getElementById('surveyForm').reset();
+}
+</script>
+
+</body>
+</html>
