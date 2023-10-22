@@ -1,0 +1,24 @@
+import java.util.*;
+class Pangram {
+	 public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scan.nextLine();
+        boolean result = isPangram(input);
+        System.out.println("The input is " + (result ? "a pangram" : "not a pangram"));
+    }
+    public static final int ALPHABET_SIZE = 26;
+    public static boolean isPangram(String str) {
+        str = str.toLowerCase().replaceAll("[^a-z]", "");
+        boolean[] present = new boolean[ALPHABET_SIZE];
+        for (char ch : str.toCharArray()) {
+            present[ch - 'a'] = true;
+        }
+        for (boolean b : present) {
+            if (!b) {
+                return false; 
+            }
+        }
+        return true; 
+    }
+}
