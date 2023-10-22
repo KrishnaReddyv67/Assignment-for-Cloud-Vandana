@@ -1,89 +1,174 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: lightblue;
-}
-form {
-    width: 300px;
-    margin: 0 auto;
-}
-input, select {
-    width: 100%;
-    margin-bottom: 10px;
-}
-button {
-    width: 100px;
-}
-#submit {
-    background-color: blue;
-    color: white;
-}
-h1 {
-    color: blue;
-    text-align: center;
-}
-</style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #b3e0f2;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #007BFF;
+    }
+    h2 {
+      text-align: center; 
+      color: #007BFF;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 95%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input[type="date"] {
+      width: 95%; 
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .radio-group {
+      display: flex;
+      align-items: center;
+    }
+    .radio-group label {
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .btn-group {
+       margin-right: 10px;
+      text-align: center;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button[type="reset"] {
+      background-color: #dc3545;
+    }
+  </style>
 </head>
 <body>
-<h1>Customer Survey Form</h1>
-<form id="surveyForm">
-<input id="firstName" type="text" placeholder="First Name" required />
-<input id="lastName" type="text" placeholder="Last Name" required />
-<input id="dob" type="date" placeholder="Date of Birth" required />
-<select id="country" required>
-<option value="">Select Country</option>
-<option value="India">India</option>
-<option value="USA">USA</option>
-<!-- Add more countries here -->
-</select>
-Gender:
-<input id="genderMale" type="radio" name="gender"/>Male
-<input id="genderFemale" type="radio" name="gender"/>Female
-<input id="profession" type="text" placeholder="Profession" required />
-<input id="email" type="email" placeholder="Email" required />
-<input id="mobileNumber" type="tel" placeholder="Mobile Number" required />
-<button id="submit" type="button" onclick="submitForm()">Submit</button>
-<button type="reset">Reset</button>
-</form>
+  <div class="container">
+    <h1>Customer Survey Form</h1>
+    <form id="CustomerSurveyForm">
+      <div class "form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+      </div>
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <select id="country" required>
+          <option value="">Select a Country</option>
+          <option value="Afghanistan">Afghanistan</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="China">China</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Japan">Japan</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Philippines">Philippines</option>
+          <option value="Singapore">Singapore</option>
+          <option value="South Korea">South Korea</option>
+          <option value="Sri Lanka">Sri Lanka</option>
+          <option value="Thailand">Thailand</option>
+          <option value="Vietnam">Vietnam</option>
+          <!-- Add more countries as needed -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <input type="radio" name="gender" id="male" value="Male" required>
+          <label for="male">Male</label>
+          <input type="radio" name="gender" id="female" value="Female">
+          <label for="female">Female</label>
+          <input type="radio" name="gender" id="other" value="Other">
+          <label for="other">Other</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="profession">Profession:</label>
+        <input type="text" id="profession" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" required>
+      </div>
+      <div class="btn-group">
+        <button type="submit" onclick="submitForm()">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+ <script>
+    function submitForm() {
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const dob = document.getElementById("dob").value;
+      const country = document.getElementById("country").value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const profession = document.getElementById("profession").value;
+      const email = document.getElementById("email").value;
+      const mobile = document.getElementById("mobile").value;
 
-<script>
-function submitForm() {
-    let firstName = document.getElementById('firstName').value;
-    let lastName = document.getElementById('lastName').value;
-    let dob = document.getElementById('dob').value;
-    let country = document.getElementById('country').value;
-    let genderMale = document.getElementById('genderMale').checked;
-    let genderFemale = document.getElementById('genderFemale').checked;
-    let profession = document.getElementById('profession').value;
-    let email = document.getElementById('email').value;
-    let mobileNumber = document.getElementById('mobileNumber').value;
+      const popupContent = `
+      <h2>Customer Details</h2>
+        <div style="background: cream; color: #007BFF; padding: 10px;">
+          <p><strong>First Name:</strong> ${firstName}</p>
+          <p><strong>Last Name:</strong> ${lastName}</p>
+          <p><strong>Date of Birth:</strong> ${dob}</p>
+          <p><strong>Country:</strong> ${country}</p>
+          <p><strong>Gender:</strong> ${gender}</p>
+          <p><strong>Profession:</strong> ${profession}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Mobile Number:</strong> ${mobile}</p>
+        </div>
+      `;
 
-    if (!firstName || !lastName || !dob || !country || !(genderMale || genderFemale) || !profession || !email || !mobileNumber) {
-        alert('Please fill all the fields.');
-        return;
+      const popup = window.open("", "Popup", "width=400, height=400");
+      popup.document.write(popupContent);
+
+      document.getElementById("CustomerSurveyForm").reset();
     }
-
-    let gender = '';
-    if (genderMale) gender += 'Male';
-    if (genderFemale) gender += 'Female';
-
-    alert(
-        'First Name: ' + firstName +
-        '\nLast Name: ' + lastName +
-        '\nDate of Birth: ' + dob +
-        '\nCountry: ' + country +
-        '\nGender: ' + gender +
-        '\nProfession: ' + profession +
-        '\nEmail: ' + email +
-        '\nMobile Number: ' + mobileNumber
-    );
-
-    document.getElementById('surveyForm').reset();
-}
-</script>
+  </script>
 
 </body>
 </html>
